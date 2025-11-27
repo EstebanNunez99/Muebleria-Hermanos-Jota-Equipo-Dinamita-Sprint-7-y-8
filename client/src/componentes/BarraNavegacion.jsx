@@ -1,7 +1,7 @@
 import "../estilos/barraNavegacion.css";
 import { useNavigate } from "react-router-dom";
 
-export function BarraNavegacion({ cantidadCarrito, alternarVisibilidadCarrito  }) {
+export function BarraNavegacion({ cantidadCarrito, alternarVisibilidadCarrito }) {
   const navigate = useNavigate();
 
   return (
@@ -18,9 +18,10 @@ export function BarraNavegacion({ cantidadCarrito, alternarVisibilidadCarrito  }
         <a onClick={() => navigate("/")}>Inicio</a>
         <a onClick={() => navigate("/catalogo")}>Catálogo</a>
         <a onClick={() => navigate("/contacto")}>Contacto</a>
+        <a onClick={() => navigate("/auth/login")}>Ingresar</a>
         <a onClick={alternarVisibilidadCarrito}>
-  🛒 Mi Carrito ({cantidadCarrito})
-</a>
+          🛒 Mi Carrito ({cantidadCarrito})
+        </a>
       </nav>
     </header>
   );

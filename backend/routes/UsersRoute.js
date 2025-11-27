@@ -1,9 +1,12 @@
 import express from 'express'
-import { register, login } from '../controllers/Users.js'
-
+import { register, login, getProfile } from '../controllers/Users.js'
+import { authMiddleware } from '../middlewares/authMiddleware.js'
 const router = express.Router()
 
 router.post('/register', register)
 router.post('/login', login)
+
+router.get('/profile',authMiddleware, getProfile)
+
 
 export default router
