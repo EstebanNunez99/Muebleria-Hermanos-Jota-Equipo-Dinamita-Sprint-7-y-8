@@ -113,3 +113,13 @@ export const login = async(req, res) => {
         })
     }
 }
+
+export const getProfile = async (req, res) =>{
+    try {
+        const user = await User.findById(req.usuario.id).select('-contrasenia')
+        res.json(user)
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).json({msg: 'Error en el servidor'})
+    }
+}

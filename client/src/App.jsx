@@ -9,6 +9,8 @@ import Carrito from "./paginas/Carrito.jsx";
 import DetalleProducto from "./paginas/DetalleProducto.jsx";
 import PiePagina from "./componentes/PiePagina.jsx";
 import CrearProducto from "./paginas/CrearProducto.jsx";
+import Login from "./paginas/Login.jsx";
+import Registro from "./paginas/Registro.jsx"
 
 import "./index.css";
 
@@ -43,6 +45,8 @@ export function App() {
             element={<DetalleProducto agregarAlCarrito={agregarAlCarrito} />}
           />
           <Route path="/contacto" element={<FormularioContacto />} />
+          <Route path="/auth/login" element={<Login/>} />
+          <Route path="/auth/registro" element={<Registro/>} />
           <Route path="/admin/crear-producto" element={<CrearProducto />} />
          
            
