@@ -1,51 +1,71 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify'
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../hooks/useAuth';
+import { useNavigate, Link } from 'react-router-dom';
+import '../estilos/auth.css';
 
-export default function Login() {
+const Login = () => {
+    const { signin, isAuthenticated, errors } = useAuth();
+    const navigate = useNavigate();
 
-  const [form, setForm] = useState({ email: '', contraseña: '' });
-  const navigate = useNavigate();
-  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
+    const [formData, setFormData] = useState({
+        email: '',
+        contrasenia: ''
+    });
 
-  const handleSubmit = async e => {
-  e.preventDefault();
-  try {
-    const res = await axios.post('http://localhost:3000/api/users/login', form);
+    useEffect(() => {
+        if (isAuthenticated) navigate('/catalogo');
+    }, [isAuthenticated, navigate]);
 
-    // Guardar datos en localStorage
-    console.log(res)
-    localStorage.setItem('usuario', JSON.stringify(res.data.usuario));
-    localStorage.setItem('token', res.data.token);
-    localStorage.setItem('rol', res.data.usuario.rol);
-    localStorage.setItem('nombre', res.data.usuario.nombre);
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-    // Redirigir según el rol
-    if (res.data.usuario.rol === 'admin') {
-      navigate('/admin');
-    } else {
-      navigate('/productos');
-    }
-  } catch (err) {
-    toast.error(`Error al iniciar sesión: ${err.response?.data?.error || 'Error desconocido'}`);
-    ('Error al iniciar sesión', err.status);
-  }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        signin(formData);
+    };
+
+    return (
+        <div className="auth-container">
+            <div className="auth-card">
+                <h2 className="auth-title">Iniciar Sesión</h2>
+
+                {errors.map((error, i) => (
+                    <div className="error-msg" key={i}>{error}</div>
+                ))}
+
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <input 
+                            type="email" 
+                            name="email"
+                            placeholder="Correo electrónico"
+                            className="form-input"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input 
+                            type="password" 
+                            name="contrasenia"
+                            placeholder="Contraseña"
+                            className="form-input"
+                            value={formData.contrasenia}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <button type="submit" className="form-button">Entrar</button>
+                </form>
+
+                <p className='auth-link'>
+                    ¿No tienes cuenta? <Link to="/registro">Regístrate</Link>
+                </p>
+            </div>
+        </div>
+    );
 };
 
-
-  return (
-    <>
-    <form onSubmit={handleSubmit}>
-      <input name="email" placeholder="Email" onChange={handleChange} />
-      <input name="contrasenia" type="password" placeholder="Contraseña" onChange={handleChange} />
-      <button type="submit" >Ingresar</button>
-    </form>
-
-    <p>¿No tenés una cuenta?</p>
-
-    <a onClick={() => navigate("/auth/registro")}>Registrate</a>
-
-    </>
-  );
-}
+export default Login;
