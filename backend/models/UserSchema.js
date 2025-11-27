@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-
+import { v4 } from 'uuid'
 const UserSchema = new mongoose.Schema({
     _id: { type: String, default: v4}, 
     nombre: { type: String, required: true, trim: true, minlength: 3, maxlength: 120},

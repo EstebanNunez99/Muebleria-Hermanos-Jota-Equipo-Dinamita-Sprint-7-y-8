@@ -5,7 +5,7 @@ import cors from 'cors';
 import { connectDB } from './database/db.js';
 import { Product } from './models/ProductSchema.js';
 import ProductRoutes from './routes/ProductsRoute.js'
-
+import UsersRoute from './routes/UsersRoute.js'
 
 dotenv.config();
 const app = express();
@@ -19,12 +19,14 @@ app.use(express.json());
 //rutas
 app.use('/api/productos', ProductRoutes)
 
+app.use('/api/users', UsersRoute)
 
 await connectDB();
 // Rutas
 app.get('/', (req, res) => {
   res.send('API de la Mueblería Hermanos Jota');
 });
+
 
 
 
