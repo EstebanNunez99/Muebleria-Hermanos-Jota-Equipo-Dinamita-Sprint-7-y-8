@@ -1,0 +1,21 @@
+:root {
+
+  --color-principal: #A0522D;       /* Siena Tostado */
+  --color-acento: #87A96B;          /* Verde Salvia */
+  --color-fondo: #F5E6D3;           /* Alabastro Cálido */
+  --color-premium: #D4A437;         /* Vara de Oro */
+  --color-suave: #C47A6D;           /* Rosa Polvoriento */
+  --color-blanco: #FFFFFF;
+
+ --fuente-principal: 'Raleway', 'Roboto', sans-serif;
+
+
+  --espaciado-xs: 0.5rem;
+  --espaciado-sm: 1rem;
+  --espaciado-md: 2rem;
+  --espaciado-lg: 4rem;
+
+
+  --borde-radio: 8px;
+  --sombra-suave: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

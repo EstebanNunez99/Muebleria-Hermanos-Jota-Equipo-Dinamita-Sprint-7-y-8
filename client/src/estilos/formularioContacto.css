@@ -1,0 +1,109 @@
+.formulario {
+  max-width: 800px;
+  margin: 80px auto;               /* 🔥 Centrado horizontal */
+  padding: 40px;
+  background-color: #fffaf5;
+  border-radius: 16px;
+  font-family: 'Inter', sans-serif;
+  box-shadow: none;                /* ❌ Eliminamos la sombra */
+  border: 2px solid #F5E6D3;       /* ✅ Opcional: borde suave para definir el bloque */
+}
+
+.formulario h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #A0522D;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ---------- Mensaje de confirmación ---------- */
+.formulario p {
+  text-align: center;
+  font-size: 1rem;
+  color: #333;
+  margin-top: 20px;
+}
+
+/* ---------- Formulario ---------- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-right: 30px;
+}
+
+/* ---------- Etiquetas ---------- */
+label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #A0522D;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ---------- Inputs y textarea ---------- */
+input,
+textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #F5E6D3;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  color: #333;
+  transition: border-color 0.3s ease;
+  resize: none; /* 🔒 Evita que el textarea se agrande o achique */
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #aaa;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #A0522D;
+}
+
+/* ---------- Botón ---------- */
+button[type="submit"] {
+  background-color: #A0522D;
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+button[type="submit"]:hover {
+  background-color: #8B4513;
+}
+
+/* ---------- Responsive ---------- */
+@media screen and (max-width: 480px) {
+  .formulario {
+    padding: 30px 20px;
+  }
+
+  .formulario h2 {
+    font-size: 1.8rem;
+  }
+
+  input,
+  textarea {
+    font-size: 0.95rem;
+  }
+
+  button[type="submit"] {
+    font-size: 0.95rem;
+  }
+}

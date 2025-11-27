@@ -1,0 +1,185 @@
+.pie {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+  text-align: center;
+  padding: var(--espaciado-sm);
+  font-size: 0.9rem;
+  font-family: var(--fuente-principal);
+  margin-top: var(--espaciado-lg);
+  box-shadow: var(--sombra-suave);
+}
+
+/* Aseguramos que .footer use flexbox */
+.footer {
+  background-color: #A0522D;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* mejor alineación vertical */
+  flex-wrap: wrap; /* que se adapte en pantallas pequeñas */
+  padding: 40px 20px;
+}
+
+.contacto {
+  padding: 25px 30px;
+  border-radius: 12px;
+  color: #fff;
+  align-content: center;
+  text-align: center;
+  width: auto;
+  margin: 0 10px;
+}
+.contacto h1{
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  color: #ffe0b2;
+}
+
+.contacto-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.contacto-item img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1);
+}
+
+.footer-title {
+  margin-bottom: 20px;
+}
+
+.Sucursales {
+
+  padding: 25px;
+  margin-right: 50px;
+  border-radius: 12px;
+  color: #fff;
+  width: 320px;
+  text-align: left;
+
+}
+
+.Sucursales h1 {
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  color: #ffe0b2;
+}
+
+.Sucursales p {
+  margin-bottom: 8px;
+  line-height: 1.5;
+  font-size: 0.98rem;
+}
+
+.Sucursales strong {
+  color: #ffd8a6;
+  font-weight: 600;
+}
+
+.tarjeta-footer {
+  padding: 25px 30px;
+  border-radius: 12px;
+  color: #fff;
+  width: 420px;
+  text-align: left;
+  margin: 0 10px;
+}
+
+.tarjeta-footer h1 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  color: #ffe0b2;
+}
+
+.tarjeta-footer p, .tarjeta-footer strong {
+  margin-bottom: 2px;
+  line-height: 1.5;
+  font-size: 0.98rem;
+}
+
+.creditos-creativos p {
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  color: #ffd8a6;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .contacto,
+  .Sucursales,
+  .tarjeta-footer {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .contacto-item {
+    justify-content: center;
+  }
+
+  .Sucursales {
+    margin-right: 0;
+  }
+
+  .Sucursales p,
+  .tarjeta-footer p,
+  .tarjeta-footer strong {
+    font-size: 0.95rem;
+  }
+
+  .tarjeta-footer h1,
+  .Sucursales h1,
+  .contacto h1 {
+    font-size: 1.1rem;
+  }
+
+  .creditos-creativos p {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer {
+    padding: 30px 16px;
+    gap: 24px;
+  }
+
+  .contacto,
+  .Sucursales,
+  .tarjeta-footer {
+    max-width: 100%;
+    padding: 16px;
+  }
+
+  .contacto-item img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .contacto-item {
+    gap: 8px;
+  }
+
+  .tarjeta-footer h1,
+  .Sucursales h1,
+  .contacto h1 {
+    font-size: 1rem;
+  }
+
+  .creditos-creativos p {
+    font-size: 0.85rem;
+  }
+}

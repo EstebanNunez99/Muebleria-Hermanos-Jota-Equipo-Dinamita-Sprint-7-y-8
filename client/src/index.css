@@ -1,0 +1,10 @@
+@import './estilos/variables.css';
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&family=Roboto:wght@400;500&display=swap');
+
+body {
+  font-family: 'Releway', 'Roboto',sans-serif;
+  background-color: whitesmoke;
+  color: var(--color-texto);
+  margin: 0;
+  padding: 0;
+}

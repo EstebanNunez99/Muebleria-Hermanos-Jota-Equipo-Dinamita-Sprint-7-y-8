@@ -1,0 +1,81 @@
+.carrito-panel {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 320px;
+  height: 100vh;
+  background-color: #fffaf5;
+  box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+  padding: 30px 20px;
+  transition: right 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+  font-family: 'Inter', sans-serif;
+}
+
+.carrito-panel.visible {
+  right: 0;
+}
+
+.cerrar-carrito {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #A0522D;
+}
+
+/* ---------- Lista de productos ---------- */
+.lista-carrito {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item-carrito {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.imagen-carrito {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  background-color: #f5e6d3;
+}
+
+.info-carrito {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-carrito p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.eliminar {
+  background-color: transparent;
+  border: none;
+  color: #A0522D;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 4px 0;
+  text-align: left;
+}
+
+/* ---------- Total ---------- */
+.total {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: #A0522D;
+  font-weight: bold;
+}

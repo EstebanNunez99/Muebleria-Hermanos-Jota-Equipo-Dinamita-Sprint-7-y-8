@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap');
+
+.crear-producto {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+  padding: 80px 5vw;
+  background-color: whitesmoke;
+  font-family: 'Inter', sans-serif;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Imagen lateral */
+.detalle-imagen {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  background-color: #F5E6D3;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detalle-imagen img {
+  width: 80%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Contenido del formulario */
+.detalle-contenido {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detalle-contenido h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: #A0522D;
+  margin: 0 0 10px 0;
+}
+
+.formulario-producto {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Campos del formulario */
+.campo-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo-form label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #6b3e2e;
+}
+
+.campo-form input,
+.campo-form textarea {
+  border: 2px solid #e0d3c2;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.2s ease;
+  background-color: #fff;
+}
+
+.campo-form input:focus,
+.campo-form textarea:focus {
+  border-color: #A0522D;
+}
+
+/* Mensajes de error */
+.error {
+  color: #c0392b;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+/* Botones */
+.detalle-botones {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.detalle-botones button {
+  background-color: #A0522D;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.detalle-botones button:hover {
+  background-color: #8B4513;
+}
+
+/* Botón volver */
+.btn-volver {
+  background-color: transparent;
+  color: #A0522D;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  border: 2px solid #A0522D;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-volver:hover {
+  background-color: #A0522D;
+  color: white;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .crear-producto {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 60px 20px;
+  }
+
+  .detalle-contenido {
+    align-items: center;
+    text-align: center;
+  }
+
+  .detalle-contenido h2 {
+    font-size: 1.8rem;
+  }
+
+  .detalle-imagen img {
+    max-height: 300px;
+  }
+}

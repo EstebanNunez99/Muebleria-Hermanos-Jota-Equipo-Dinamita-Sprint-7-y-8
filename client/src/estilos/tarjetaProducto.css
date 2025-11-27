@@ -1,0 +1,91 @@
+.tarjeta {
+  background: #f5e6d3;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 460px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+}
+
+.tarjeta:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.tarjeta h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #a0522d;
+  margin: 20px 0 10px;
+  letter-spacing: 0.05em;
+}
+
+.tarjeta img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.detalle-info {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.detalle-info p {
+  font-size: 1rem;
+  color: #333;
+  margin: 8px 0;
+}
+
+.detalle-info p strong {
+  color: #a0522d;
+  font-weight: 600;
+}
+
+.botones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-ver-detalle,
+.btn-agregar {
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  border-radius: 6px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border: none;
+}
+
+.btn-ver-detalle {
+  background-color: #c47a6d;
+  color: black;
+}
+
+.btn-agregar {
+  background-color: #a0522d;
+  color: white;
+}
+
+.btn-ver-detalle:hover {
+  background-color: #d88c7f;
+}
+
+.btn-agregar:hover {
+  background-color: #8b4513;
+}
