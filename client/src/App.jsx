@@ -10,12 +10,14 @@ import Carrito from "./paginas/Carrito.jsx";
 import DetalleProducto from "./paginas/DetalleProducto.jsx";
 import PiePagina from "./componentes/PiePagina.jsx";
 import CrearProducto from "./paginas/CrearProducto.jsx";
+import EditarProducto from "./paginas/EditarProducto.jsx";
 import Login from "./paginas/Login.jsx";
 import Registro from "./paginas/Registro.jsx";
 import ConfirmarPedido from "./paginas/ConfirmarPedido.jsx";
 import PedidoConfirmado from "./paginas/PedidoConfirmado.jsx";
 
 import { CartProvider } from "./context/CartContext.jsx";
+import MiPerfil from "./paginas/MiPerfil.jsx"
 
 import "./index.css";
 
@@ -50,11 +52,12 @@ export function App() {
           <Route path="/carrito" element={<FinalizarCompra />} />
           <Route path="/confirmar-pedido" element={<ConfirmarPedido />} />
           <Route path="/pedido-confirmado" element={<PedidoConfirmado />} />
-
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
+          <Route path="/mi-perfil" element={<MiPerfil />} />
           
           <Route path="/admin/crear-producto" element={<CrearProducto />} />
+          <Route path="/admin/editar-producto/:id" element={<EditarProducto />} />
         </Routes>
 
         <Carrito
