@@ -1,4 +1,4 @@
-import Pedidos from "../models/PedidosSchema";
+import  Pedidos  from "../models/PedidosSchema.js";
 
 // Crear un nuevo pedido
 export const crearPedido = async (req, res) => {
@@ -9,16 +9,11 @@ export const crearPedido = async (req, res) => {
             return res.status(400).json({ msg: "El pedido debe contener al menos un producto." });
         }
 
-        const productosFormateados = productos.map(item => ({
-            producto: item.producto,
-            cantidad: item.cantidad,
-            preciounitario: item.preciounitario,
-            subtotal: item.subtotal
-        }));
+    
 
         const nuevoPedido = new Pedidos({   
             cliente: req.usuario.id,
-            prfuctos: productosFormateados,
+            productos,
             total,
         });
         await nuevoPedido.save();

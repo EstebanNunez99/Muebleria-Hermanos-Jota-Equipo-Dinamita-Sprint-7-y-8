@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const PedidosSchema = new mongoose.Schema(
   {
-    cliente: { type: mongoose.Schema.Types.ObjectId, ref: "Clientes", required: true },
+    cliente: { type: String, ref: "User", required: true },
     prfuctos: [
       {
-        producto: { type: mongoose.Schema.Types.ObjectId, ref: "Productos", required: true },
+        producto: { type: String, ref: "Products", required: true },
         cantidad: { type: Number, required: true, min: 1 },
         preciounitario: { type: Number, required: true, min: 0 },
         subtotal: { type: Number, required: true, min: 0 }
