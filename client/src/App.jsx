@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthProvider from "./context/AuthProvider"; 
 import { BarraNavegacion } from "./componentes/BarraNavegacion.jsx";
 import { Home } from "./paginas/Home.jsx";
+import FinalizarCompra from "./paginas/FinalizarCompra.jsx";
 import Catalogo from "./paginas/catalogo.jsx";
 import FormularioContacto from "./paginas/FormularioContacto.jsx";
 import Carrito from "./paginas/Carrito.jsx";
@@ -13,6 +14,10 @@ import EditarProducto from "./paginas/EditarProducto.jsx";
 import PanelAdmin from "./paginas/PanelAdmin.jsx";
 import Login from "./paginas/Login.jsx";
 import Registro from "./paginas/Registro.jsx";
+import ConfirmarPedido from "./paginas/ConfirmarPedido.jsx";
+import PedidoConfirmado from "./paginas/PedidoConfirmado.jsx";
+
+import { CartProvider } from "./context/CartContext.jsx";
 import MiPerfil from "./paginas/MiPerfil.jsx"
 
 import "./index.css";
@@ -37,6 +42,7 @@ export function App() {
   return (
     <AuthProvider> 
       <BrowserRouter>
+      <CartProvider>
         <BarraNavegacion cantidadCarrito={carrito.length} alternarVisibilidadCarrito={alternarVisibilidadCarrito} />
 
         <Routes>
@@ -44,7 +50,9 @@ export function App() {
           <Route path="/catalogo" element={<Catalogo agregarAlCarrito={agregarAlCarrito} />} />
           <Route path="/producto/:id" element={<DetalleProducto agregarAlCarrito={agregarAlCarrito} />} />
           <Route path="/contacto" element={<FormularioContacto />} />
-          
+          <Route path="/carrito" element={<FinalizarCompra />} />
+          <Route path="/confirmar-pedido" element={<ConfirmarPedido />} />
+          <Route path="/pedido-confirmado" element={<PedidoConfirmado />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/mi-perfil" element={<MiPerfil />} />
@@ -61,6 +69,7 @@ export function App() {
           cerrar={() => setCarritoVisible(false)} />
 
         <PiePagina />
+      </CartProvider>
       </BrowserRouter>
     </AuthProvider>
   );

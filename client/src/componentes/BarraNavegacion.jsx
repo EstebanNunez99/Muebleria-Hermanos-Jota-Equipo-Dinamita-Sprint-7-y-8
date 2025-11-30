@@ -1,11 +1,15 @@
 import "../estilos/barraNavegacion.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth"; 
+import { useCartState } from "../context/CartContext";
 
-export function BarraNavegacion({ cantidadCarrito, alternarVisibilidadCarrito }) {
+export function BarraNavegacion({ alternarVisibilidadCarrito }) {
   const navigate = useNavigate();
   const { isAuthenticated, logout, usuario } = useAuth();
   const esAdmin = usuario?.rol === 'admin';
+
+  const { items } = useCartState();
+  const cantidadCarrito = items.reduce((total, item) => total + item.cantidad, 0);
 
   return (
     <header className="barra">

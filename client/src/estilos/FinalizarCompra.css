@@ -1,0 +1,179 @@
+/* ======================= CONTENEDOR GENERAL ======================= */
+
+.checkout-container {
+  width: 90%;
+  margin: 40px auto;
+  background-color: whitesmoke;
+  padding: 20px 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.checkout-title {
+  font-size: 32px;
+  margin-bottom: 30px;
+  font-family: 'Playfair Display', serif;
+  color: #A0522D;
+  margin-left: 15px;
+}
+
+/* ======================= LAYOUT ======================= */
+
+.checkout-layout {
+  display: flex;
+  gap: 30px;
+}
+
+/* ======================= IZQUIERDA ======================= */
+
+.checkout-left {
+  flex: 3;
+}
+
+.checkout-item {
+  display: flex;
+  background: #F5E6D3;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.checkout-img {
+  width: 180px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.checkout-info h3 {
+  font-family: 'Playfair Display', serif;
+  color: #A0522D;
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+.checkout-prices {
+  margin: 10px 0;
+}
+
+.precio-tachado {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 10px;
+}
+
+.precio-final {
+  font-size: 24px;
+  font-weight: bold;
+  color: #6b3e2e;
+}
+
+/* CANTIDAD */
+
+.cantidad-box {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.cantidad-btn {
+  background: transparent;
+  border: 2px solid #A0522D;
+  padding: 4px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #A0522D;
+  transition: 0.2s ease;
+}
+
+.cantidad-btn:hover {
+  background-color: #A0522D;
+  color: white;
+}
+
+.cantidad-box span {
+  margin: 0 10px;
+  font-size: 18px;
+}
+
+/* ======================= DERECHA ======================= */
+
+.checkout-right {
+  flex: 1.2;
+  background: #F5E6D3;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+
+  position: sticky;
+  top: 20px;
+
+       /* Tamaño base que se mantiene */
+  max-height: 300px;       /* Máximo para no crecer infinito */
+  overflow-y: auto; 
+}
+
+.checkout-right h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #A0522D;
+  margin-bottom: 20px;
+}
+
+.precio-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 22px;
+  margin-top: 20px;
+  color: #6b3e2e;
+}
+
+/* ======================= BOTONES ======================= */
+
+.btn-comprar {
+  width: 100%;
+  background: #A0522D;
+  color: white;
+  border: none;
+  padding: 14px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  transition: 0.2s ease;
+}
+
+.btn-comprar:hover {
+  background: #8B4513;
+}
+
+.btn-volver {
+  width: 100%;
+  background: transparent;
+  color: #A0522D;
+  border: 2px solid #A0522D;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-volver:hover {
+  background: #A0522D;
+  color: white;
+}
+
+/* ======================= RESPONSIVE ======================= */
+
+@media screen and (max-width: 768px) {
+  .checkout-layout {
+    flex-direction: column;
+  }
+
+  .checkout-right {
+    width: 100%;
+  }
+}
