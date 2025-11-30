@@ -5,6 +5,7 @@ import { useAuth } from "../hooks/useAuth";
 export function BarraNavegacion({ cantidadCarrito, alternarVisibilidadCarrito }) {
   const navigate = useNavigate();
   const { isAuthenticated, logout, usuario } = useAuth();
+  const esAdmin = usuario?.rol === 'admin';
 
   return (
     <header className="barra">
@@ -27,6 +28,7 @@ export function BarraNavegacion({ cantidadCarrito, alternarVisibilidadCarrito })
         ) : (
           <>
             <a onClick={() => navigate("/catalogo")}>Catálogo</a>
+            <a onClick={() => navigate("/admin/panel")}> Panel Admin</a>
           </>
         )}
 

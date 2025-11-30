@@ -10,6 +10,7 @@ import DetalleProducto from "./paginas/DetalleProducto.jsx";
 import PiePagina from "./componentes/PiePagina.jsx";
 import CrearProducto from "./paginas/CrearProducto.jsx";
 import EditarProducto from "./paginas/EditarProducto.jsx";
+import PanelAdmin from "./paginas/PanelAdmin.jsx";
 import Login from "./paginas/Login.jsx";
 import Registro from "./paginas/Registro.jsx";
 import MiPerfil from "./paginas/MiPerfil.jsx"
@@ -48,6 +49,7 @@ export function App() {
           <Route path="/registro" element={<Registro />} />
           <Route path="/mi-perfil" element={<MiPerfil />} />
           
+          <Route path="/admin/panel" element={<PanelAdmin />} />
           <Route path="/admin/crear-producto" element={<CrearProducto />} />
           <Route path="/admin/editar-producto/:id" element={<EditarProducto />} />
         </Routes>
