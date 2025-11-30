@@ -160,7 +160,6 @@
   cursor: not-allowed;
 }
 
-/* ========== SECCIÓN EDICIÓN DE PERFIL ========== */
 .perfil-edicion {
   background-color: var(--color-blanco);
   padding: 30px;
@@ -294,7 +293,6 @@
   color: var(--color-blanco);
 }
 
-/* ========== SECCIÓN DE ACCIONES ========== */
 .perfil-acciones {
   grid-column: 2;
 }
@@ -338,7 +336,6 @@
   text-align: center;
 }
 
-/* ========== MENSAJES DE ESTADO ========== */
 .mensaje-exito {
   background-color: #c8e6c9;
   color: #2e7d32;
@@ -357,7 +354,6 @@
   border-left: 4px solid #c62828;
 }
 
-/* ========== RESPONSIVE ========== */
 @media screen and (max-width: 768px) {
   .perfil-container {
     padding: 60px 16px 40px;
@@ -432,6 +428,6 @@
   }
 
   .form-input {
-    font-size: 16px; /* Previene zoom en iOS */
+    font-size: 16px; 
   }
 }

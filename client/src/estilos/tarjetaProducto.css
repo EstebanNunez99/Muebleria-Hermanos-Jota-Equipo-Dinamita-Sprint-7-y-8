@@ -1,7 +1,7 @@
 .tarjeta {
-  background: #f5e6d3;
+  background: var(--color-fondo);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: var(--sombra-suave);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -13,13 +13,13 @@
 
 .tarjeta:hover {
   transform: scale(1.03);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  box-shadow: var(--sombra-suave);
 }
 
 .tarjeta h3 {
   font-family: 'Playfair Display', serif;
   font-size: 1.8rem;
-  color: #a0522d;
+  color: var(--color-principal);
   margin: 20px 0 10px;
   letter-spacing: 0.05em;
 }
@@ -46,7 +46,7 @@
 }
 
 .detalle-info p strong {
-  color: #a0522d;
+  color: var(--color-principal);
   font-weight: 600;
 }
 
@@ -58,7 +58,8 @@
 }
 
 .btn-ver-detalle,
-.btn-agregar {
+.btn-agregar,
+.btn-editar {
   padding: 10px 16px;
   font-size: 0.9rem;
   font-family: 'Inter', sans-serif;
@@ -73,19 +74,28 @@
 }
 
 .btn-ver-detalle {
-  background-color: #c47a6d;
+  background-color: var(--color-suave);
   color: black;
 }
 
 .btn-agregar {
-  background-color: #a0522d;
-  color: white;
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+}
+
+.btn-editar {
+  background-color: var(--color-acento);
+  color: var(--color-blanco);
 }
 
 .btn-ver-detalle:hover {
-  background-color: #d88c7f;
+  background-color: var(--color-suave);
 }
 
 .btn-agregar:hover {
-  background-color: #8b4513;
+  background-color: var(--color-principal);
+}
+
+.btn-editar:hover {
+  background-color: var(--color-acento);
 }
