@@ -1,8 +1,10 @@
 import "../estilos/barraNavegacion.css";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth"; 
 
 export function BarraNavegacion({ cantidadCarrito, alternarVisibilidadCarrito }) {
   const navigate = useNavigate();
+  const { isAuthenticated, logout, usuario } = useAuth();
 
   return (
     <header className="barra">
@@ -15,13 +17,37 @@ export function BarraNavegacion({ cantidadCarrito, alternarVisibilidadCarrito })
       </div>
 
       <nav className="barra-links">
-        <a onClick={() => navigate("/")}>Inicio</a>
-        <a onClick={() => navigate("/catalogo")}>Catálogo</a>
-        <a onClick={() => navigate("/contacto")}>Contacto</a>
-        <a onClick={() => navigate("/auth/login")}>Ingresar</a>
-        <a onClick={alternarVisibilidadCarrito}>
-          🛒 Mi Carrito ({cantidadCarrito})
-        </a>
+        {/* Mostrar Inicio y Contacto solo a clientes */}
+        {!usuario || usuario.rol !== 'admin' ? (
+          <>
+            <a onClick={() => navigate("/")}>Inicio</a>
+            <a onClick={() => navigate("/catalogo")}>Catálogo</a>
+            <a onClick={() => navigate("/contacto")}>Contacto</a>
+          </>
+        ) : (
+          <>
+            <a onClick={() => navigate("/catalogo")}>Catálogo</a>
+          </>
+        )}
+
+        {isAuthenticated ? (
+          <>
+            <a onClick={()=> navigate("/mi-perfil")}>
+              Mi perfil
+            </a>
+          </>
+        ) : (
+          <>
+            <a onClick={() => navigate("/login")}>Ingresar</a>
+          </>
+        )}
+
+        {/* Mostrar carrito solo a clientes */}
+        {!usuario || usuario.rol !== 'admin' ? (
+          <a onClick={alternarVisibilidadCarrito}>
+            🛒 Mi Carrito ({cantidadCarrito})
+          </a>
+        ) : null}
       </nav>
     </header>
   );

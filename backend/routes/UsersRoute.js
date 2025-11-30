@@ -1,12 +1,13 @@
 import express from 'express'
-import { register, login, getProfile } from '../controllers/Users.js'
-import { auth } from '../middleware/auth.js'
+import { register, login, getProfile, updateProfile, updatePassword } from '../controllers/Users.js'
+import { authMiddleware } from '../middlewares/authMiddleware.js'
 const router = express.Router()
 
 router.post('/register', register)
 router.post('/login', login)
 
-router.get('/profile',auth, getProfile)
-
+router.get('/profile', authMiddleware, getProfile)
+router.put('/profile', authMiddleware, updateProfile)
+router.put('/change-password', authMiddleware, updatePassword)
 
 export default router

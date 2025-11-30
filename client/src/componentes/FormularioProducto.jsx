@@ -1,67 +1,104 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { API_PRODUCTOS_URL } from "../config/api";
 
-export default function FormularioProducto() {
+export default function FormularioProducto({ productoId = null }) {
   const navigate = useNavigate();
+  const esEdicion = !!productoId;
+  const [cargando, setCargando] = useState(false);
+  
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm();
 
+  // Cargar datos del producto si es edición
+  useEffect(() => {
+    if (esEdicion) {
+      setCargando(true);
+      fetch(`${API_PRODUCTOS_URL}/${productoId}`)
+        .then(res => res.json())
+        .then(data => {
+          setValue("nombre", data.nombre);
+          setValue("descripcion", data.descripcion);
+          setValue("medidas", data.medidas);
+          setValue("materiales", data.materiales);
+          setValue("acabados", data.acabados);
+          setValue("precio", data.precio);
+          setValue("stock", data.stock);
+          setCargando(false);
+        })
+        .catch(err => {
+          console.error("Error al cargar producto:", err);
+          setCargando(false);
+        });
+    }
+  }, [productoId, esEdicion, setValue]);
+
   const subirImagenACloudinary = async (file) => {
-  const data = new FormData();
-  data.append("file", file);
-  data.append("upload_preset", "productosFront"); // nombre EXACTO del preset
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "productosFront");
 
-  try {
-    const res = await fetch("https://api.cloudinary.com/v1_1/de6ise4ho/image/upload", {
-      method: "POST",
-      body: data
-    });
+    try {
+      const res = await fetch("https://api.cloudinary.com/v1_1/de6ise4ho/image/upload", {
+        method: "POST",
+        body: data
+      });
 
-    const result = await res.json();
-    if (!res.ok) {
-      console.error("❌ Error Cloudinary:", result);
-      alert(`Error Cloudinary: ${result.error?.message || "Error desconocido"}`);
+      const result = await res.json();
+      if (!res.ok) {
+        console.error("❌ Error Cloudinary:", result);
+        alert(`Error Cloudinary: ${result.error?.message || "Error desconocido"}`);
+        return null;
+      }
+
+      return result.secure_url;
+    } catch (err) {
+      console.error("❌ Error al subir imagen:", err);
       return null;
     }
-
-    return result.secure_url;
-  } catch (err) {
-    console.error("❌ Error al subir imagen:", err);
-    return null;
-  }
-};
-
+  };
 
   const onSubmit = async (data) => {
     try {
-      const archivo = data.imagenFile[0];
-      const imagenUrl = await subirImagenACloudinary(archivo);
+      let imagenUrl = null;
 
-      console.log("Datos recibidos:", data);
-      console.log("Archivo:", data.imagenFile?.[0]);
+      // Si hay un archivo de imagen, subirlo
+      if (data.imagenFile && data.imagenFile[0]) {
+        imagenUrl = await subirImagenACloudinary(data.imagenFile[0]);
+      }
 
-      
+      const bodyData = {
+        nombre: data.nombre,
+        descripcion: data.descripcion,
+        medidas: data.medidas,
+        materiales: data.materiales,
+        acabados: data.acabados,
+        precio: parseFloat(data.precio),
+        stock: parseInt(data.stock || 0),
+      };
 
-      const res = await fetch(API_PRODUCTOS_URL, {
-        method: "POST",
+      if (imagenUrl) {
+        bodyData.imagen = imagenUrl;
+      }
+
+      const url = esEdicion ? `${API_PRODUCTOS_URL}/${productoId}` : API_PRODUCTOS_URL;
+      const method = esEdicion ? "PUT" : "POST";
+
+      const res = await fetch(url, {
+        method: method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...data,
-          imagen: imagenUrl,
-          precio: parseFloat(data.precio),
-          stock: parseInt(data.stock || 0),
-        }),
+        body: JSON.stringify(bodyData),
       });
 
-      console.log("URL de imagen:", imagenUrl);
-
       if (res.ok) {
-        alert("✅ Producto creado correctamente");
+        const mensaje = esEdicion ? "Producto actualizado correctamente" : "Producto creado correctamente";
+        alert(`✅ ${mensaje}`);
         reset();
         navigate("/catalogo");
       } else {
@@ -70,9 +107,14 @@ export default function FormularioProducto() {
       }
     } catch (error) {
       console.error(error);
-      alert("Error al crear el producto");
+      const mensaje = esEdicion ? "Error al actualizar el producto" : "Error al crear el producto";
+      alert(mensaje);
     }
   };
+
+  if (cargando && esEdicion) {
+    return <p>Cargando datos del producto...</p>;
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="formulario-producto">
@@ -134,22 +176,22 @@ export default function FormularioProducto() {
           <p className="error">{errors.materiales.message}</p>
         )}
       </div>
-      <div className="campo-form">
-  <label>Acabados</label>
-  <input
-    type="text"
-    placeholder="Ej: Barniz mate, laca brillante"
-    {...register("acabados", {
-      required: "Los acabados son obligatorios",
-      minLength: {
-        value: 3,
-        message: "Debe tener al menos 3 caracteres",
-      },
-    })}
-  />
-  {errors.acabados && <p className="error">{errors.acabados.message}</p>}
-</div>
 
+      <div className="campo-form">
+        <label>Acabados</label>
+        <input
+          type="text"
+          placeholder="Ej: Barniz mate, laca brillante"
+          {...register("acabados", {
+            required: "Los acabados son obligatorios",
+            minLength: {
+              value: 3,
+              message: "Debe tener al menos 3 caracteres",
+            },
+          })}
+        />
+        {errors.acabados && <p className="error">{errors.acabados.message}</p>}
+      </div>
 
       <div className="campo-form">
         <label>Precio</label>
@@ -165,12 +207,12 @@ export default function FormularioProducto() {
       </div>
 
       <div className="campo-form">
-        <label>Imagen (archivo)</label>
+        <label>Imagen {esEdicion && "(opcional - dejar en blanco si no deseas cambiarla)"}</label>
         <input
           type="file"
           accept="image/*"
           {...register("imagenFile", {
-            required: "La imagen es obligatoria",
+            required: esEdicion ? false : "La imagen es obligatoria",
           })}
         />
         {errors.imagenFile && (
@@ -191,7 +233,9 @@ export default function FormularioProducto() {
       </div>
 
       <div className="detalle-botones">
-        <button type="submit">Crear Producto</button>
+        <button type="submit">
+          {esEdicion ? "Guardar cambios" : "Crear Producto"}
+        </button>
         <button
           type="button"
           className="btn-volver"

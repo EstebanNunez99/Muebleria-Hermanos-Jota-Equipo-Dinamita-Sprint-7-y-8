@@ -1,65 +1,97 @@
-import React, { useState, useEffect, useCallback, Children } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import api from '../../api/axios'
-import AuthContext from './AuthContext.js'
+import { AuthContext } from './AuthContext.js'
 
-const AuthProvider = ({ Children }) => {
+const AuthProvider = ({ children }) => {
     const [ usuario, setUsuario ] = useState(null)
     const [ isAuthenticated, setIsAuthenticated] = useState(false)
+    const [ errors, setErrors ] = useState([]) 
     const [ cargando, serCargando ] = useState(true)
+
+    useEffect(() => {
+        if (errors.length > 0) {
+            const timer = setTimeout(() => {
+                setErrors([]);
+            }, 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [errors]);
 
     const logout = useCallback(()=>{
         localStorage.removeItem('token')
         setUsuario(null)
         setIsAuthenticated(false)
+        setErrors([])
     }, [])
 
     useEffect (()=>{
-        const token = localStorage.getItem('token')
+        const verificarLogin = async () => {
+            const token = localStorage.getItem('token')
+            if ( !token ) {
+                serCargando(false)
+                return
+            }
 
-        if ( token ) {
-            api.get('/users/profile')
-                .then(res => {
-                    setUsuario(res.data)
-                    setIsAuthenticated(true)
-                })
-                .catch(()=> logout())
-                .finally(()=> serCargando(false))
-        } else {
-            serCargando(false)
+            try {
+                const res = await api.get('/auth/profile') 
+                setUsuario(res.data)
+                setIsAuthenticated(true)
+            } catch (error) {
+                logout()
+            } finally {
+                serCargando(false)
+            }
         }
+        verificarLogin()
     }, [logout])
 
-    const registro =async (nombre, email, contrasenia)=>{
-
-        const res = await api.post('/users/login', { nombre, email, contrasenia})
-        localStorage.setItem('token', res.data.token)
-        
-        const perfilRes = await api.get('/users/profile')
-        setUsuario(perfilRes.data)
-
-        setIsAuthenticated(true)
+    
+    const signup = async (user) => {
+        try {
+            const res = await api.post('/auth/register', user)
+            localStorage.setItem('token', res.data.token)
+            
+            const perfilRes = await api.get('/auth/profile')
+            setUsuario(perfilRes.data)
+            setIsAuthenticated(true)
+        } catch (error) {
+            console.log(error.response.data);
+            setErrors(Array.isArray(error.response.data) ? error.response.data : [error.response.data.msg || "Error al registrarse"])
+        }
     }
 
-    const login =async (email, contrasenia)=>{
-        const res = await api.post('/users/login', { email, contrasenia})
-        localStorage.setItem('token', res.data.token)
-        
-        const perfilRes = await api.get('/users/profile')
-        setUsuario(perfilRes.data)
-
-        setIsAuthenticated(true)
+    const signin = async (user) => {
+        try {
+            const res = await api.post('/auth/login', user)
+            localStorage.setItem('token', res.data.token)
+            
+            const perfilRes = await api.get('/auth/profile')
+            setUsuario(perfilRes.data)
+            setIsAuthenticated(true)
+        } catch (error) {
+            console.log(error.response.data);
+            setErrors(Array.isArray(error.response.data) ? error.response.data : [error.response.data.msg || "Error al iniciar sesión"])
+        }
     }
 
-    const updateUserContext = (newUserData) => {
-        setUsuario(prevUsuario => ({ ...prevUsuario, ...newUserData}))
+    const updateUserContext = (updatedUser) => {
+        setUsuario(updatedUser)
     }
 
     return (
-        <AuthContext.Provider value = {{ isAuthenticated, usuario, cargando, login, registro, logout, updateUserContext}}>
-            {!cargando && Children}
+        <AuthContext.Provider value = {{ 
+            isAuthenticated, 
+            usuario, 
+            cargando, 
+            signin,   
+            signup,  
+            logout,
+            errors,
+            updateUserContext    
+        }}>
+            {children}
         </AuthContext.Provider>
     )
 }
 
 export default AuthProvider
-
