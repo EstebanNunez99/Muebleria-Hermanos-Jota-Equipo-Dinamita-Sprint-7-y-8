@@ -1,0 +1,117 @@
+/* Usa la misma estructura que FinalizarCompra */
+/* Solo cambian algunos detalles */
+
+.checkout-container {
+  width: 90%;
+  margin: 40px auto;
+  background-color: whitesmoke;
+  padding: 20px 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.checkout-title {
+  font-size: 32px;
+  margin-bottom: 30px;
+  font-family: 'Playfair Display', serif;
+  color: #A0522D;
+  margin-left: 15px;
+}
+
+.checkout-layout {
+  display: flex;
+  gap: 30px;
+}
+
+.checkout-left {
+  flex: 3;
+}
+
+.checkout-item {
+  display: flex;
+  background: #F5E6D3;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.checkout-img {
+  width: 180px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.checkout-info h3 {
+  font-family: 'Playfair Display', serif;
+  color: #A0522D;
+  font-size: 1.4rem;
+}
+
+.precio-sub {
+  font-size: 1.1rem;
+  color: #6b3e2e;
+}
+
+/* DERECHA */
+
+.checkout-right {
+  flex: 1.2;
+  background: #F5E6D3;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+
+  position: sticky;
+  top: 20px;
+  min-height: 380px;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.checkout-right h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #A0522D;
+  margin-bottom: 20px;
+}
+
+.precio-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 22px;
+  margin-top: 20px;
+  color: #6b3e2e;
+}
+
+.btn-comprar {
+  width: 100%;
+  background: #A0522D;
+  color: white;
+  border: none;
+  padding: 14px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.btn-comprar:hover {
+  background: #8B4513;
+}
+
+.btn-volver {
+  width: 100%;
+  background: transparent;
+  color: #A0522D;
+  border: 2px solid #A0522D;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-volver:hover {
+  background: #A0522D;
+  color: white;
+}

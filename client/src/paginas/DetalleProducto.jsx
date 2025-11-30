@@ -2,12 +2,15 @@ import { useParams, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../estilos/detalleProducto.css";
 import { API_PRODUCTOS_URL, API_BASE_URL } from "../config/api.js";
+import { useCartState } from "../context/CartContext.jsx";
 
-function DetalleProducto({ agregarAlCarrito }) {
+function DetalleProducto() {
   const { id } = useParams();
   const [producto, setProducto] = useState(null);
   const [cargando, setCargando] = useState(true);
   const [agregado, setAgregado] = useState(false);
+
+  const { addToCart } = useCartState();
 
   useEffect(() => {
     if (!id) {
@@ -44,7 +47,13 @@ function DetalleProducto({ agregarAlCarrito }) {
   if (!producto) return <p className="detalle-error">Producto no encontrado</p>;
 
   const manejarAgregar = () => {
-    agregarAlCarrito(producto);
+    addToCart({
+      id: producto.id,
+      nombre: producto.nombre,
+      precio: producto.precio,
+      imagen: producto.imagen,
+      cantidad: 1,
+    });
     setAgregado(true);
     setTimeout(() => setAgregado(false), 2000);
   };
