@@ -74,6 +74,10 @@ const AuthProvider = ({ children }) => {
         }
     }
 
+    const updateUserContext = (updatedUser) => {
+        setUsuario(updatedUser)
+    }
+
     return (
         <AuthContext.Provider value = {{ 
             isAuthenticated, 
@@ -82,7 +86,8 @@ const AuthProvider = ({ children }) => {
             signin,   
             signup,  
             logout,
-            errors    
+            errors,
+            updateUserContext    
         }}>
             {children}
         </AuthContext.Provider>

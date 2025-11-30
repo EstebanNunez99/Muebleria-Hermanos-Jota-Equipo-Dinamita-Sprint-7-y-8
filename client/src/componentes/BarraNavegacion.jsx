@@ -17,29 +17,37 @@ export function BarraNavegacion({ cantidadCarrito, alternarVisibilidadCarrito })
       </div>
 
       <nav className="barra-links">
-        <a onClick={() => navigate("/")}>Inicio</a>
-        <a onClick={() => navigate("/catalogo")}>Catálogo</a>
-        <a onClick={() => navigate("/contacto")}>Contacto</a>
+        {/* Mostrar Inicio y Contacto solo a clientes */}
+        {!usuario || usuario.rol !== 'admin' ? (
+          <>
+            <a onClick={() => navigate("/")}>Inicio</a>
+            <a onClick={() => navigate("/catalogo")}>Catálogo</a>
+            <a onClick={() => navigate("/contacto")}>Contacto</a>
+          </>
+        ) : (
+          <>
+            <a onClick={() => navigate("/catalogo")}>Catálogo</a>
+          </>
+        )}
 
         {isAuthenticated ? (
           <>
-            <a style={{ fontWeight: "bold", cursor: "default" }}>
-              Hola, {usuario?.nombre}
+            <a onClick={()=> navigate("/mi-perfil")}>
+              Mi perfil
             </a>
-            <a onClick={() => {
-              logout();
-            }}>Cerrar Sesión</a>
           </>
         ) : (
           <>
             <a onClick={() => navigate("/login")}>Ingresar</a>
-            <a onClick={() => navigate("/registro")}>Registrarse</a>
           </>
         )}
 
-        <a onClick={alternarVisibilidadCarrito}>
-          🛒 Mi Carrito ({cantidadCarrito})
-        </a>
+        {/* Mostrar carrito solo a clientes */}
+        {!usuario || usuario.rol !== 'admin' ? (
+          <a onClick={alternarVisibilidadCarrito}>
+            🛒 Mi Carrito ({cantidadCarrito})
+          </a>
+        ) : null}
       </nav>
     </header>
   );
