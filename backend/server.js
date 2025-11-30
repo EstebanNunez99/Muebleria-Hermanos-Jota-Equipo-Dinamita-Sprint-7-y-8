@@ -7,6 +7,7 @@ import { Product } from './models/ProductSchema.js';
 import ProductRoutes from './routes/ProductsRoute.js'
 import PedidosRoutes from './routes/PedidosRoute.js'
 import UsersRoutes from './routes/UsersRoute.js'
+import PedidosRoutes from './routes/PedidosRoute.js'
 
 dotenv.config();
 const app = express();
@@ -23,12 +24,13 @@ app.use('/api/pedidos', PedidosRoutes)
 
 app.use('/api/auth', UsersRoutes)
 
+app.use('/api/pedidos', PedidosRoutes)
+
 await connectDB();
 // Rutas
 app.get('/', (req, res) => {
   res.send('API de la Mueblería Hermanos Jota');
 });
-
 
 
 

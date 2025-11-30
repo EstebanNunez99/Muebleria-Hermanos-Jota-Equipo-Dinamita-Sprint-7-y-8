@@ -20,6 +20,7 @@ import Login from "./paginas/Login.jsx";
 import Registro from "./paginas/Registro.jsx";
 import ConfirmarPedido from "./paginas/ConfirmarPedido.jsx";
 import PedidoConfirmado from "./paginas/PedidoConfirmado.jsx";
+import MisPedidos from "./paginas/MisPedidos.jsx";
 
 import { CartProvider } from "./context/CartContext.jsx";
 import MiPerfil from "./paginas/MiPerfil.jsx"
@@ -56,6 +57,8 @@ export function App() {
           <Route path="/contacto" element={<FormularioContacto />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
+          <Route path="/mi-perfil" element={<MiPerfil />} />
+          <Route path="/mis-pedidos" element={<MisPedidos />} />
           
           
           <Route path="/carrito" element= {<ProtectedRoute>  <FinalizarCompra /> </ProtectedRoute>} />
