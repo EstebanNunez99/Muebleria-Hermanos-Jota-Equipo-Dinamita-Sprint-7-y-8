@@ -209,3 +209,67 @@ export const updatePassword = async (req, res) => {
         res.status(500).json({ msg: 'Error al cambiar la contraseña' })
     }
 }
+
+// obtener todos los usuarios 
+export const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find().select('-contrasenia')
+        res.status(200).json(users)
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).json({ msg: 'Error al obtener usuarios' })
+    }
+}
+
+// eliminar un usuario por id  
+export const deleteUserById = async (req, res) => {
+    try {
+        const userId = req.params.id
+        
+        const userDeleted = await User.findByIdAndDelete(userId)
+        if (!userDeleted) {
+            return res.status(404).json({ msg: 'Usuario no encontrado' })
+        }
+        
+        res.status(200).json({ msg: 'Usuario eliminado correctamente' })
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).json({ msg: 'Error al eliminar usuario' })
+    }
+}
+
+// actualizar un usuario por id  
+export const updateUserById = async (req, res) => {
+    try {
+        const { nombre, email, rol } = req.body
+        const userId = req.params.id
+
+        const updateData = {}
+        if (nombre) updateData.nombre = nombre
+        if (email) updateData.email = email
+        if (rol) updateData.rol = rol
+
+        // Verificar si el email ya existe
+        if (email) {
+            const existingUser = await User.findOne({ email, _id: { $ne: userId } })
+            if (existingUser) {
+                return res.status(400).json({ msg: 'El email ya está en uso' })
+            }
+        }
+
+        const userUpdated = await User.findByIdAndUpdate(
+            userId,
+            updateData,
+            { new: true }
+        ).select('-contrasenia')
+
+        if (!userUpdated) {
+            return res.status(404).json({ msg: 'Usuario no encontrado' })
+        }
+
+        res.status(200).json(userUpdated)
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).json({ msg: 'Error al actualizar usuario' })
+    }
+}
