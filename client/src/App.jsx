@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthProvider from "./context/AuthProvider"; 
+import ProtectedRoute from "./componentes/ProtectedRoute.jsx";
+
+
 import { BarraNavegacion } from "./componentes/BarraNavegacion.jsx";
 import { Home } from "./paginas/Home.jsx";
 import FinalizarCompra from "./paginas/FinalizarCompra.jsx";
@@ -50,16 +54,19 @@ export function App() {
           <Route path="/catalogo" element={<Catalogo agregarAlCarrito={agregarAlCarrito} />} />
           <Route path="/producto/:id" element={<DetalleProducto agregarAlCarrito={agregarAlCarrito} />} />
           <Route path="/contacto" element={<FormularioContacto />} />
-          <Route path="/carrito" element={<FinalizarCompra />} />
-          <Route path="/confirmar-pedido" element={<ConfirmarPedido />} />
-          <Route path="/pedido-confirmado" element={<PedidoConfirmado />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
-          <Route path="/mi-perfil" element={<MiPerfil />} />
           
-          <Route path="/admin/panel" element={<PanelAdmin />} />
-          <Route path="/admin/crear-producto" element={<CrearProducto />} />
-          <Route path="/admin/editar-producto/:id" element={<EditarProducto />} />
+          
+          <Route path="/carrito" element= {<ProtectedRoute>  <FinalizarCompra /> </ProtectedRoute>} />
+          <Route path="/confirmar-pedido" element={<ProtectedRoute>  <ConfirmarPedido /> </ProtectedRoute>} />
+          <Route path="/pedido-confirmado" element={<ProtectedRoute>  <PedidoConfirmado /> </ProtectedRoute>} />
+      
+          <Route path="/mi-perfil" element={<ProtectedRoute>  <MiPerfil /> </ProtectedRoute>} />
+          
+          <Route path="/admin/panel" element={<ProtectedRoute>  <PanelAdmin /> </ProtectedRoute>} />
+          <Route path="/admin/crear-producto" element={ <ProtectedRoute>  <CrearProducto /> </ProtectedRoute>} />
+          <Route path="/admin/editar-producto/:id" element={<ProtectedRoute>  <EditarProducto /> </ProtectedRoute>} />
         </Routes>
 
         <Carrito

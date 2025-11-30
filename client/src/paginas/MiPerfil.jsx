@@ -208,7 +208,7 @@ const MiPerfil = () => {
             )}
 
             <div className="perfil-content">
-                <div>
+                
                     <div className="perfil-datos">
                         <h3>Datos de la Cuenta</h3>
                         <div className="dato-item">
@@ -231,38 +231,11 @@ const MiPerfil = () => {
                                 {usuario.rol === 'admin' ? 'Administrador' : 'Cliente'}
                             </span>
                         </div>
-                    </div>
+                    
 
                     {/* FOTO DE PERFIL */}
-                    <div className="perfil-foto-container">
-                        <h3>Foto de Perfil</h3>
-                        <div className="foto-wrapper">
-                            <img
-                                className="foto-imagen"
-                                src={usuario.fotoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(usuario.nombre) + '&size=200&background=random'}
-                                alt="Foto de perfil"
-                            />
-                            {uploadingPhoto && (
-                                <div className="foto-cargando">Cargando...</div>
-                            )}
-                        </div>
-                        <input
-                            ref={fileInputRef}
-                            type="file"
-                            accept="image/*"
-                            onChange={handlePhotoChange}
-                            style={{ display: 'none' }}
-                        />
-                        <button 
-                            className="btn-cambiar-foto"
-                            onClick={handlePhotoClick}
-                            disabled={uploadingPhoto}
-                        >
-                            {uploadingPhoto ? 'Subiendo...' : 'Cambiar Foto'}
-                        </button>
-                    </div>
+                    
                 </div>
-
                 <div>
                     <div className="perfil-acciones">
                         <h3>Acciones</h3>
@@ -292,8 +265,36 @@ const MiPerfil = () => {
                         )}
                     </div>
                 </div>
-            </div>
 
+                <div className="perfil-foto-container">
+                        <h3>Foto de Perfil</h3>
+                        <div className="foto-wrapper">
+                            <img
+                                className="foto-imagen"
+                                src={usuario.fotoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(usuario.nombre) + '&size=200&background=random'}
+                                alt="Foto de perfil"
+                            />
+                            {uploadingPhoto && (
+                                <div className="foto-cargando">Cargando...</div>
+                            )}
+                        </div>
+                        <input
+                            ref={fileInputRef}
+                            type="file"
+                            accept="image/*"
+                            onChange={handlePhotoChange}
+                            style={{ display: 'none' }}
+                        />
+                        <button 
+                            className="btn-cambiar-foto"
+                            onClick={handlePhotoClick}
+                            disabled={uploadingPhoto}
+                        >
+                            {uploadingPhoto ? 'Subiendo...' : 'Cambiar Foto'}
+                        </button>
+                    </div>
+
+                
             <div className="perfil-edicion">
                 <h3>Editar Perfil</h3>
                 
@@ -423,6 +424,9 @@ const MiPerfil = () => {
                     </div>
                 )}
             </div>
+            </div>
+
+            
         </div>
     );
 };
