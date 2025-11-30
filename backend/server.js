@@ -5,6 +5,7 @@ import cors from 'cors';
 import { connectDB } from './database/db.js';
 import { Product } from './models/ProductSchema.js';
 import ProductRoutes from './routes/ProductsRoute.js'
+import PedidosRoutes from './routes/PedidosRoute.js'
 import UsersRoutes from './routes/UsersRoute.js'
 
 dotenv.config();
@@ -18,6 +19,7 @@ app.use(express.json());
 
 //rutas
 app.use('/api/productos', ProductRoutes)
+app.use('/api/pedidos', PedidosRoutes)
 
 app.use('/api/auth', UsersRoutes)
 

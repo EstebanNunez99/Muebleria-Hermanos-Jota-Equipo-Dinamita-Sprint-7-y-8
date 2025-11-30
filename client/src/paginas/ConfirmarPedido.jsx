@@ -17,9 +17,13 @@ export default function ConfirmarPedido() {
         return navigate("/login");
       }
 
-      const productos = items.map((item) => item.id);
-
-      const res = await fetch(`${API_BASE_URL}/pedidos`, {
+   const productos = items.map(item => ({
+  producto: item.id,
+  cantidad: item.cantidad,
+  preciounitario: item.precio,
+  subtotal: item.precio * item.cantidad
+}));
+      const res = await fetch(`${API_BASE_URL}/api/pedidos`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
