@@ -22,7 +22,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        signin(formData);
+        signin(formData, true);
     };
 
     return (
