@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AuthProvider from "./context/AuthProvider"; 
+import AuthProvider from "./context/AuthProvider";
 import ProtectedRoute from "./componentes/ProtectedRoute.jsx";
 
 
@@ -45,41 +45,44 @@ export function App() {
   };
 
   return (
-    <AuthProvider> 
+    <AuthProvider>
       <BrowserRouter>
-      <CartProvider>
-        <BarraNavegacion cantidadCarrito={carrito.length} alternarVisibilidadCarrito={alternarVisibilidadCarrito} />
+        <CartProvider>
+          <BarraNavegacion cantidadCarrito={carrito.length} alternarVisibilidadCarrito={alternarVisibilidadCarrito} />
 
-        <Routes>
-          <Route path="/" element={<Home></Home>} />
-          <Route path="/catalogo" element={<Catalogo agregarAlCarrito={agregarAlCarrito} />} />
-          <Route path="/producto/:id" element={<DetalleProducto agregarAlCarrito={agregarAlCarrito} />} />
-          <Route path="/contacto" element={<FormularioContacto />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/registro" element={<Registro />} />
-          <Route path="/mi-perfil" element={<MiPerfil />} />
-          <Route path="/mis-pedidos" element={<MisPedidos />} />
-          
-          
-          <Route path="/carrito" element= {<ProtectedRoute>  <FinalizarCompra /> </ProtectedRoute>} />
-          <Route path="/confirmar-pedido" element={<ProtectedRoute>  <ConfirmarPedido /> </ProtectedRoute>} />
-          <Route path="/pedido-confirmado" element={<ProtectedRoute>  <PedidoConfirmado /> </ProtectedRoute>} />
-      
-          <Route path="/mi-perfil" element={<ProtectedRoute>  <MiPerfil /> </ProtectedRoute>} />
-          
-          <Route path="/admin/panel" element={<ProtectedRoute>  <PanelAdmin /> </ProtectedRoute>} />
-          <Route path="/admin/crear-producto" element={ <ProtectedRoute>  <CrearProducto /> </ProtectedRoute>} />
-          <Route path="/admin/editar-producto/:id" element={<ProtectedRoute>  <EditarProducto /> </ProtectedRoute>} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home></Home>} />
+            <Route path="/catalogo" element={<Catalogo agregarAlCarrito={agregarAlCarrito} />} />
+            <Route path="/producto/:id" element={<DetalleProducto agregarAlCarrito={agregarAlCarrito} />} />
+            <Route path="/contacto" element={<FormularioContacto />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/registro" element={<Registro />} />
+            <Route path="/mi-perfil" element={<MiPerfil />} />
+            <Route path="/mis-pedidos" element={<MisPedidos />} />
 
-        <Carrito
-          productosCarrito={carrito}
-          eliminarDelCarrito={eliminarDelCarrito}
-          visible={carritoVisible}
-          cerrar={() => setCarritoVisible(false)} />
 
-        <PiePagina />
-      </CartProvider>
+            <Route path="/carrito" element={<ProtectedRoute>  <FinalizarCompra /> </ProtectedRoute>} />
+            <Route path="/confirmar-pedido" element={<ProtectedRoute>  <ConfirmarPedido /> </ProtectedRoute>} />
+            <Route path="/pedido-confirmado" element={<ProtectedRoute>  <PedidoConfirmado /> </ProtectedRoute>} />
+
+            <Route path="/mi-perfil" element={<ProtectedRoute>  <MiPerfil /> </ProtectedRoute>} />
+
+            <Route path="/admin/panel" element={<ProtectedRoute>  <PanelAdmin /> </ProtectedRoute>} />
+            <Route path="/admin/crear-producto" element={<ProtectedRoute>  <CrearProducto /> </ProtectedRoute>} />
+            <Route path="/admin/editar-producto/:id" element={<ProtectedRoute>  <EditarProducto /> </ProtectedRoute>} />
+          </Routes>
+
+          <Carrito
+            productosCarrito={carrito}
+            eliminarDelCarrito={eliminarDelCarrito}
+            visible={carritoVisible}
+            cerrar={() => setCarritoVisible(false)} />
+
+          <PiePagina />
+        </CartProvider>
+        <div style={{ position: 'fixed', bottom: 10, right: 10, background: 'black', color: 'white', padding: 10, zIndex: 9999 }}>
+          API: {import.meta.env.VITE_API_BASE_URL || 'UNDEFINED'}
+        </div>
       </BrowserRouter>
     </AuthProvider>
   );
