@@ -1,9 +1,10 @@
+/* ---------- Panel del carrito ---------- */
 .carrito-panel {
   position: fixed;
   top: 0;
   right: -100%;
   width: 320px;
-  height: 100vh;
+  height: 95vh;
   background-color: #fffaf5;
   box-shadow: -4px 0 12px rgba(0,0,0,0.1);
   padding: 30px 20px;
@@ -11,12 +12,26 @@
   z-index: 1000;
   overflow-y: auto;
   font-family: 'Inter', sans-serif;
+
+  /* Scroll suave y estilizado */
+  scrollbar-width: thin;
+  scrollbar-color: #d2b48c transparent;
+}
+
+.carrito-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.carrito-panel::-webkit-scrollbar-thumb {
+  background-color: #d2b48c;
+  border-radius: 4px;
 }
 
 .carrito-panel.visible {
   right: 0;
 }
 
+/* ---------- Botón cerrar ---------- */
 .cerrar-carrito {
   position: absolute;
   top: 12px;
@@ -78,4 +93,34 @@
   font-size: 1.1rem;
   color: #A0522D;
   font-weight: bold;
+}
+
+/* ---------- Botón Finalizar Compra ---------- */
+.btn-finalizar-compra {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px 20px;
+  background-color: var(--color-principal);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-finalizar:hover {
+  background-color: var(--color-suave);
+  transform: translateY(-1px);
+}
+
+.btn-finalizar:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
 }
