@@ -7,7 +7,9 @@ export default function Carrito({
   visible,
   cerrar,
 }) {
-  const { items, removeFromCart } = useCartState();
+  const cartState = useCartState();
+  const items = Array.isArray(cartState?.items) ? cartState.items : [];
+  const removeFromCart = cartState?.removeFromCart || (() => {});
   const navigate = useNavigate();
 
 

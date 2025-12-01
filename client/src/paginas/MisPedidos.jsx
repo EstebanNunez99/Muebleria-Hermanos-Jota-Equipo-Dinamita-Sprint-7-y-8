@@ -108,9 +108,9 @@ export default function MisPedidos() {
               </div>
 
               <div className="productos-pedido">
-                <h4>Productos ({pedido.prfuctos.length}):</h4>
+                <h4>Productos ({pedido.productos.length}):</h4>
                 <ul>
-                  {pedido.prfuctos.map((item, idx) => (
+                  {pedido.productos.map((item, idx) => (
                     <li key={idx} className="item-pedido">
                       <div className="item-info">
                         <p className="producto-nombre">

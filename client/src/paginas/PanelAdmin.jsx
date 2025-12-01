@@ -15,8 +15,8 @@ const PanelAdmin = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [cargandoUsuarios, setCargandoUsuarios] = useState(false);
   
-  // const [pedidos, setPedidos] = useState([]);
-  // const [cargandoPedidos, setCargandoPedidos] = useState(false);
+  const [pedidos, setPedidos] = useState([]);
+  const [cargandoPedidos, setCargandoPedidos] = useState(false);
 
   // Verificar que es admin
   if (!usuario || usuario.rol !== 'admin') {
@@ -58,17 +58,17 @@ const PanelAdmin = () => {
   };
 
   // Cargar pedidos
-  // const cargarPedidos = async () => {
-  //   try {
-  //     setCargandoPedidos(true);
-  //     const res = await api.get('/pedidos');
-  //     setPedidos(res.data);
-  //   } catch (error) {
-  //     console.error('Error al cargar pedidos:', error);
-  //   } finally {
-  //     setCargandoPedidos(false);
-  //   }
-  // };
+  const cargarPedidos = async () => {
+    try {
+      setCargandoPedidos(true);
+      const res = await api.get('/pedidos');
+      setPedidos(res.data);
+    } catch (error) {
+      console.error('Error al cargar pedidos:', error);
+    } finally {
+      setCargandoPedidos(false);
+    }
+  };
 
   // Eliminar producto por id
   const eliminarProducto = async (id) => {
@@ -95,36 +95,36 @@ const PanelAdmin = () => {
   };
 
   // Actualizar estado del pedido
-  // const actualizarEstadoPedido = async (id, nuevoEstado) => {
-  //   try {
-  //     await api.put(`/pedidos/${id}/estado`, { estado: nuevoEstado });
-  //     cargarPedidos();
-  //   } catch (error) {
-  //     console.error('Error al actualizar pedido:', error);
-  //   }
-  // };
+  const actualizarEstadoPedido = async (id, nuevoEstado) => {
+    try {
+      await api.put(`/pedidos/${id}/estado`, { estado: nuevoEstado });
+      cargarPedidos();
+    } catch (error) {
+      console.error('Error al actualizar pedido:', error);
+    }
+  };
 
   // Eliminar pedido
-  // const eliminarPedido = async (id) => {
-  //   if (window.confirm('¿Está seguro de que desea eliminar este pedido?')) {
-  //     try {
-  //       await api.delete(`/pedidos/${id}`);
-  //       cargarPedidos();
-  //     } catch (error) {
-  //       console.error('Error al eliminar pedido:', error);
-  //     }
-  //   }
-  // };
+  const eliminarPedido = async (id) => {
+    if (window.confirm('¿Está seguro de que desea eliminar este pedido?')) {
+      try {
+        await api.delete(`/pedidos/${id}`);
+        cargarPedidos();
+      } catch (error) {
+        console.error('Error al eliminar pedido:', error);
+      }
+    }
+  };
 
   useEffect(() => {
     if (seccionActiva === 'productos') {
       cargarProductos();
     } else if (seccionActiva === 'usuarios') {
       cargarUsuarios();
+    
+    } else if (seccionActiva === 'pedidos') {
+      cargarPedidos();
     }
-    // } else if (seccionActiva === 'pedidos') {
-    //   cargarPedidos();
-    // }
   }, [seccionActiva]);
 
   return (
@@ -179,12 +179,11 @@ const PanelAdmin = () => {
               <div className="opcion-card">
                 <h3> Gestionar Pedidos</h3>
                 <p>Visualiza todos los pedidos realizados y su estado</p>
-                <p> Todavia no funciona :) </p>
           
                 <div className="botones-opcion">
                   <button 
                     className="btn-accion azul"
-                    // onClick={() => setSeccionActiva('pedidos')}
+                    onClick={() => setSeccionActiva('pedidos')}
                   >
                     📋 Ver Pedidos
                   </button>

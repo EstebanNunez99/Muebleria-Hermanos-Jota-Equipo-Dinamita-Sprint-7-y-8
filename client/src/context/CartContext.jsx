@@ -6,8 +6,11 @@ export const CartProvider = ({ children }) => {
  const [items, setItems] = useState(() => {
   try {
     const saved = localStorage.getItem("cart");
-    return saved ? JSON.parse(saved) : [];
-  } catch {
+    if (!saved) return [];
+    const parsed = JSON.parse(saved);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    console.error("Error al parsear carrito desde localStorage:", error);
     return [];
   }
 });
@@ -62,12 +65,33 @@ export const CartProvider = ({ children }) => {
   setItems([]);
 };
 
+const contextValue = {
+  items: Array.isArray(items) ? items : [],
+  addToCart,
+  removeFromCart,
+  increase,
+  decrease,
+  clearCart
+};
 
   return (
-    <CartContext.Provider value={{ items, addToCart, removeFromCart, increase, decrease, clearCart}}>
+    <CartContext.Provider value={contextValue}>
       {children}
     </CartContext.Provider>
   );
 };
 
-export const useCartState = () => useContext(CartContext);
+export const useCartState = () => {
+  const context = useContext(CartContext);
+  if (!context) {
+    return {
+      items: [],
+      addToCart: () => {},
+      removeFromCart: () => {},
+      increase: () => {},
+      decrease: () => {},
+      clearCart: () => {}
+    };
+  }
+  return context;
+};

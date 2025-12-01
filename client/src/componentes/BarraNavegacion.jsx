@@ -8,7 +8,8 @@ export function BarraNavegacion({ alternarVisibilidadCarrito }) {
   const { isAuthenticated, logout, usuario } = useAuth();
   const esAdmin = usuario?.rol === 'admin';
 
-  const { items } = useCartState();
+  const cartState = useCartState();
+  const items = Array.isArray(cartState?.items) ? cartState.items : [];
   const cantidadCarrito = items.reduce((total, item) => total + item.cantidad, 0);
 
   return (

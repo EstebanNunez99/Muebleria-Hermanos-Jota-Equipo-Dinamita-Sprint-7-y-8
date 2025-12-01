@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const PedidosSchema = new mongoose.Schema(
   {
     cliente: { type: String, ref: "User", required: true },
-    prfuctos: [
+    productos: [
       {
         producto: { type: String, ref: "Products", required: true },
         cantidad: { type: Number, required: true, min: 1 },
