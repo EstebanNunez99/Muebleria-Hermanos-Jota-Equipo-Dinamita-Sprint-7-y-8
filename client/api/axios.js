@@ -3,7 +3,7 @@ import axios from 'axios'
 // Obtener la URL base del API desde variables de entorno
 // En Vercel: Se configura en Environment Variables
 // En desarrollo: Se puede establecer en .env.local
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+const API_BASE_URL = process.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 console.log('🔧 API_BASE_URL configurada como:', API_BASE_URL);
 
