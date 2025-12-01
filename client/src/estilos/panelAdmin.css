@@ -1,6 +1,3 @@
-/* ===========================
-     PANEL GENERAL
-   =========================== */
 .panel-container {
   width: 91%;
 
@@ -9,9 +6,7 @@
   font-family: var(--fuente-principal);
 }
 
-/* ===========================
-     HEADER DEL PANEL
-   =========================== */
+
 .panel-header {
   width: 100%;
   background: linear-gradient(135deg, var(--color-principal), var(--color-suave));
@@ -36,9 +31,6 @@
   margin: 0;
 }
 
-/* ===========================
-     CONTENIDO DEL PANEL
-   =========================== */
 .panel-content {
   width: 100%;
   display: grid;
@@ -46,9 +38,7 @@
   gap: var(--espacio-grande);
 }
 
-/* ===========================
-     SECCIONES Y TARJETAS
-   =========================== */
+
 .panel-seccion,
 .opcion-card {
   background: white;
@@ -73,18 +63,14 @@
   margin: 0;
 }
 
-/* ===========================
-     GRID DE OPCIONES
-   =========================== */
+
 .opciones-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--espacio-mediano);
 }
 
-/* ===========================
-     BOTONES DE ACCIÓN
-   =========================== */
+
 .botones-opcion {
   display: flex;
   gap: 20px;
@@ -135,9 +121,7 @@
   box-shadow: 0 2px 8px rgba(245, 166, 35, 0.3);
 }
 
-/* ===========================
-     BOTÓN VOLVER
-   =========================== */
+
 .btn-volver {
   background-color: var(--color-principal);
   color: white;
@@ -159,9 +143,7 @@
   box-shadow: var(--sombra-suave);
 }
 
-/* ===========================
-     RESPONSIVE
-   =========================== */
+
 @media (max-width: 768px) {
   .panel-container {
     padding: 80px 20px;
@@ -201,9 +183,7 @@
   }
 }
 
-/* ===========================
-   CONTENEDOR DE SECCIÓN LISTA
-   =========================== */
+
 .lista-seccion {
   background: white;
   padding: 40px;
@@ -238,22 +218,8 @@
 .btn-crear:hover {
   background-color: var(--color-suave);
   transform: translateY(-1px);
-}
-
-/* ===========================
-   TABLA
-   =========================== */
-.tabla-responsiva {
-  overflow-x: auto;
-  border-radius: 14px;
-  box-shadow: var(--sombra-suave);
-  background: white;
-}
-
-.tabla-admin {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 680px; /* asegura estructura en pantallas estrechas */
+  min-width: 680px;
+  /* asegura estructura en pantallas estrechas */
 }
 
 .tabla-admin thead {
@@ -276,7 +242,8 @@
 }
 
 .tabla-admin tbody tr:nth-child(even) {
-  background: #f7f3ef; /* zebra suave coherente con paleta */
+  background: #f7f3ef;
+  /* zebra suave coherente con paleta */
 }
 
 .tabla-admin td {
@@ -291,21 +258,7 @@
   background-color: #f0ece8;
 }
 
-/* Cabeceras sticky opcional (si el contenedor tiene altura fija) */
-/*
-.tabla-responsiva {
-  max-height: 520px;
-}
-.tabla-admin thead th {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-*/
 
-/* ===========================
-   ACCIONES EN FILA
-   =========================== */
 .acciones {
   display: flex;
   gap: var(--espacio-pequeño);
@@ -352,9 +305,7 @@
   opacity: 0.6;
 }
 
-/* ===========================
-   LISTAS (ul/ol) CON ESTILO
-   =========================== */
+
 .lista {
   list-style: none;
   margin: 0;
@@ -397,9 +348,6 @@
   gap: var(--espacio-pequeño);
 }
 
-/* ===========================
-   CONTROLES SUPERIORES (buscador/filtros)
-   =========================== */
 .controles {
   display: flex;
   flex-wrap: wrap;
@@ -425,9 +373,7 @@
   min-width: 200px;
 }
 
-/* ===========================
-   RESPONSIVE
-   =========================== */
+
 @media (max-width: 900px) {
   .lista-seccion {
     padding: 30px;

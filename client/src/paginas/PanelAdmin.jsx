@@ -14,7 +14,7 @@ const PanelAdmin = () => {
 
   const [usuarios, setUsuarios] = useState([]);
   const [cargandoUsuarios, setCargandoUsuarios] = useState(false);
-  
+
   const [pedidos, setPedidos] = useState([]);
   const [cargandoPedidos, setCargandoPedidos] = useState(false);
 
@@ -121,7 +121,7 @@ const PanelAdmin = () => {
       cargarProductos();
     } else if (seccionActiva === 'usuarios') {
       cargarUsuarios();
-    
+
     } else if (seccionActiva === 'pedidos') {
       cargarPedidos();
     }
@@ -135,28 +135,28 @@ const PanelAdmin = () => {
       </div>
 
       <div className="panel-content">
-        
+
         {seccionActiva === 'menu' && (
           <div className="panel-menu">
             <h2>Opciones de Administración</h2>
-            
+
             <div className="opciones-grid">
               {/* card productos */}
               <div className="opcion-card">
                 <h3> Gestionar Productos</h3>
                 <p>Gestiona el catálogo de productos</p>
                 <div className="botones-opcion">
-                  <button 
+                  <button
                     className="btn-accion verde"
                     onClick={() => navigate('/admin/crear-producto')}
                   >
                     ➕ Crear
                   </button>
-                  <button 
+                  <button
                     className="btn-accion azul"
                     onClick={() => setSeccionActiva('productos')}
                   >
-                    📋 Listar
+                    📋 Gestionar Productos
                   </button>
                 </div>
               </div>
@@ -166,7 +166,7 @@ const PanelAdmin = () => {
                 <h3>👥 Gestionar Usuarios</h3>
                 <p>Gestiona los usuarios del sistema</p>
                 <div className="botones-opcion">
-                  <button 
+                  <button
                     className="btn-accion azul"
                     onClick={() => setSeccionActiva('usuarios')}
                   >
@@ -179,9 +179,9 @@ const PanelAdmin = () => {
               <div className="opcion-card">
                 <h3> Gestionar Pedidos</h3>
                 <p>Visualiza todos los pedidos realizados y su estado</p>
-          
+
                 <div className="botones-opcion">
-                  <button 
+                  <button
                     className="btn-accion azul"
                     onClick={() => setSeccionActiva('pedidos')}
                   >
@@ -204,9 +204,9 @@ const PanelAdmin = () => {
               ← Volver al menú
             </button>
             <h2> Gestión de Productos</h2>
-            
+
             <div className="btn-grupo">
-              <button 
+              <button
                 className="btn-accion verde"
                 onClick={() => navigate('/admin/crear-producto')}
               >
@@ -236,13 +236,13 @@ const PanelAdmin = () => {
                         <td>${producto.precio}</td>
                         <td>{producto.stock || 0}</td>
                         <td className="acciones">
-                          <button 
+                          <button
                             className="btn-editar"
                             onClick={() => navigate(`/admin/editar-producto/${producto._id}`)}
                           >
                             ✏️ Editar
                           </button>
-                          <button 
+                          <button
                             className="btn-eliminar"
                             onClick={() => eliminarProducto(producto._id)}
                           >
@@ -265,7 +265,7 @@ const PanelAdmin = () => {
               ← Volver al menú
             </button>
             <h2>👥 Gestión de Usuarios</h2>
-            
+
             {cargandoUsuarios ? (
               <p>Cargando usuarios...</p>
             ) : usuarios.length === 0 ? (
@@ -294,12 +294,12 @@ const PanelAdmin = () => {
                         </td>
                         <td>{usr.telefono || '-'}</td>
                         <td className="acciones">
-                          <button 
+                          <button
                             className="btn-eliminar"
                             onClick={() => eliminarUsuario(usr._id)}
                             disabled={usr._id === usuario._id}
                           >
-                             Eliminar
+                            Eliminar
                           </button>
                         </td>
                       </tr>
@@ -318,7 +318,7 @@ const PanelAdmin = () => {
               ← Volver al menú
             </button>
             <h2> Gestión de Pedidos</h2>
-            
+
             {cargandoPedidos ? (
               <p>Cargando pedidos...</p>
             ) : pedidos.length === 0 ? (
@@ -343,7 +343,7 @@ const PanelAdmin = () => {
                         <td>{pedido.cliente?.nombre || '-'}</td>
                         <td>${pedido.total.toFixed(2)}</td>
                         <td>
-                          <select 
+                          <select
                             className={`estado-select estado-${pedido.estado.toLowerCase()}`}
                             value={pedido.estado}
                             onChange={(e) => actualizarEstadoPedido(pedido._id, e.target.value)}
@@ -355,11 +355,11 @@ const PanelAdmin = () => {
                         </td>
                         <td>{new Date(pedido.createdAt).toLocaleDateString()}</td>
                         <td className="acciones">
-                          <button 
+                          <button
                             className="btn-eliminar"
                             onClick={() => eliminarPedido(pedido._id)}
                           >
-                             Eliminar
+                            Eliminar
                           </button>
                         </td>
                       </tr>

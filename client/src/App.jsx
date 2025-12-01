@@ -80,12 +80,9 @@ export function App() {
 
           <PiePagina />
         </CartProvider>
-        <div style={{ position: 'fixed', bottom: 10, right: 10, background: 'black', color: 'white', padding: 10, zIndex: 9999 }}>
-          API: {import.meta.env.VITE_API_BASE_URL || 'UNDEFINED:'}
-        </div>
       </BrowserRouter>
     </AuthProvider>
   );
 }
 
-export default App; 
+export default App;
