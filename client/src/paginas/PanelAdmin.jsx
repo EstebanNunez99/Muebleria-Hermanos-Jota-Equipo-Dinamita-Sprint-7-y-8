@@ -200,7 +200,7 @@ const PanelAdmin = () => {
         {/* seccion para gestions deproductos */}
         {seccionActiva === 'productos' && (
           <div className="panel-seccion">
-            <button className="btn-atras" onClick={() => setSeccionActiva('menu')}>
+            <button className="btn-volver" onClick={() => setSeccionActiva('menu')}>
               ← Volver al menú
             </button>
             <h2> Gestión de Productos</h2>
@@ -261,7 +261,7 @@ const PanelAdmin = () => {
         {/* seccion para gestionar a los usuarios */}
         {seccionActiva === 'usuarios' && (
           <div className="panel-seccion">
-            <button className="btn-atras" onClick={() => setSeccionActiva('menu')}>
+            <button className="btn-volver" onClick={() => setSeccionActiva('menu')}>
               ← Volver al menú
             </button>
             <h2>👥 Gestión de Usuarios</h2>
@@ -314,7 +314,7 @@ const PanelAdmin = () => {
         {/* seccion de pedidos*/}
         {seccionActiva === 'pedidos' && (
           <div className="panel-seccion">
-            <button className="btn-atras" onClick={() => setSeccionActiva('menu')}>
+            <button className="btn-volver" onClick={() => setSeccionActiva('menu')}>
               ← Volver al menú
             </button>
             <h2> Gestión de Pedidos</h2>

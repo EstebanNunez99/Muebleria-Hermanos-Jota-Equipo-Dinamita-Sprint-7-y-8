@@ -1,94 +1,119 @@
+/* ===========================
+     CONTENEDOR GENERAL
+   =========================== */
 .auth-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh; 
-    background-color: var(--color-fondo);
-    padding: var(--espaciado-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: whitesmoke;
+  padding: var(--espacio-grande);
+  font-family: var(--fuente-principal);
 }
 
+/* ===========================
+     TARJETA DE AUTENTICACIÓN
+   =========================== */
 .auth-card {
-    background-color: var(--color-blanco);
-    padding: var(--espaciado-lg); 
-    border-radius: var(--borde-radio);
-    box-shadow: var(--sombra-suave);
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid rgba(160, 82, 45, 0.1); 
+  background-color: white;
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: var(--sombra-suave);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin-top: -100px;
+  gap: var(--espacio-mediano);
+  border: 1px solid rgba(160, 82, 45, 0.1);
 }
 
+/* ===========================
+     TÍTULO
+   =========================== */
 .auth-title {
-    text-align: center;
-    color: var(--color-principal);
-    font-family: var(--fuente-principal);
-    margin-bottom: var(--espaciado-md);
-    font-size: 2rem;
-    font-weight: bold;
+  text-align: center;
+  color: var(--color-principal);
+  font-size: var(--fs-h1);
+  font-weight: bold;
+  margin-bottom: var(--espacio-mediano);
 }
 
+/* ===========================
+     FORMULARIO
+   =========================== */
 .form-group {
-    margin-bottom: var(--espaciado-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .form-input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: var(--borde-radio);
-    font-size: 16px;
-    font-family: var(--fuente-principal);
-    box-sizing: border-box;
-    outline: none;
-    transition: border-color 0.3s;
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 2px solid #e5d6c7;
+  font-size: var(--fs-body);
+  font-family: var(--fuente-principal);
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
 }
 
 .form-input:focus {
-    border-color: var(--color-principal);
+  border-color: var(--color-principal);
 }
 
+/* ===========================
+     BOTÓN
+   =========================== */
 .form-button {
-    width: 100%;
-    padding: 12px;
-    background-color: var(--color-principal); 
-    color: var(--color-blanco);
-    border: none;
-    border-radius: var(--borde-radio);
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: var(--espaciado-sm);
-    transition: background-color 0.3s;
-    font-family: var(--fuente-principal);
+  width: 100%;
+  padding: 14px;
+  background-color: var(--color-principal);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  font-family: var(--fuente-principal);
 }
 
 .form-button:hover {
-    background-color: var(--color-acento);
+  background-color: var(--color-suave);
 }
 
+/* ===========================
+     LINK DE ACCIÓN
+   =========================== */
 .auth-link {
-    display: block;
-    text-align: center;
-    margin-top: var(--espaciado-md);
-    color: var(--color-suave); 
+  text-align: center;
+  margin-top: var(--espacio-mediano);
+  font-size: 0.95rem;
+  color: var(--color-suave);
 }
 
 .auth-link a {
-    color: var(--color-principal);
-    text-decoration: none;
-    font-weight: bold;
+  color: var(--color-principal);
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .auth-link a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
+/* ===========================
+     MENSAJE DE ERROR
+   =========================== */
 .error-msg {
-    background-color: #ffebee;
-    color: #c62828;
-    padding: var(--espaciado-xs);
-    border-radius: var(--borde-radio);
-    margin-bottom: var(--espaciado-sm);
-    text-align: center;
-    font-size: 0.9rem;
-    border: 1px solid #ef9a9a;
-}
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #ef9a9a;
+  text-align: center;
+  font-size: 0.9rem;
+}   
